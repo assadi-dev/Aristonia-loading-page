@@ -5,6 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Aristonia</title>
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="./favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32"
+            href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="./favicon/favicon-16x16.png">
+        <link rel="manifest" href="./favicon/site.webmanifest">
+
         <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/variable.css">
         <link rel="stylesheet" href="./css/main.css">
@@ -16,27 +26,28 @@
             </figure>
 
             <section class="middle-section">
-                <div class="presentation-white-back" ></div>
-                
+                <div class="presentation-white-back"></div>
+
 
 
                 <div class="presentation-container">
 
-                    {# <video src="./assets/LOading.mp4"></video> #}
+                    <video class="video" src="./assets/LOading.mp4" width="1920"
+                        height="1080" autoplay loop></video>
 
                     <div class="progress-section">
 
-                        <span>45%</span>
+                        <span class="progress-percent">45%</span>
                         <div class="progress-container">
-                         
+
                             <div class="bar"></div>
                         </div>
 
                     </div>
-         
-              
+
+
                 </div>
-          
+
 
 
             </section>
@@ -44,8 +55,11 @@
 
             <seection class="bottom-section">
                 <div class="volume-controls-container">
-                    <div class="row-btn"> <button>ON</button> <button>OFF</button></div>
-                   <div class="volume-sounBar-container"></div>
+                    <div class="row-btn"><span id="volume-icon"> </span> <button
+                            id="play-video">ON</button> <button id="stop-video">OFF</button>  <div id="volume-level-container"> <span>Volume</span><span id="volume-level" >0%</span> </div> </div>
+                    <div class="volume-sounBar-container">
+                        <div id="sound_cursor"></div>
+                    </div>
                 </div>
             </seection>
 
