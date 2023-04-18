@@ -18,7 +18,7 @@ const svgVolumePath = {
 };
 
 let clicked = false;
-let volumeLevel = 0.5;
+let volumeLevel = 0.2;
 let volumeComplete = 20;
 let positionCusorVol = 124;
 
@@ -55,13 +55,13 @@ const init_cursor = () => {
 const play_video = async (e) => {
   let status = "on";
   switchSelected(status);
-
+  objectNode.audio.volume = volumeLevel;
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
 
-  if (objectNode.video.paused || objectNode.video.ended) {
+  if (objectNode.video.paused) {
     objectNode.video.play();
   }
-  if (objectNode.audio.paused || objectNode.audio.ended) {
+  if (objectNode.audio.paused) {
     objectNode.audio.play();
   }
 };
