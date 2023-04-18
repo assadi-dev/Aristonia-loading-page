@@ -170,6 +170,7 @@
     -moz-transition: all 0.35s ease-in ;
     -ms-transition: all 0.35s ease-in ;
     -o-transition: all 0.35s ease-in ;
+    overflow: hidden;
 }
 
 .progress-percent{
@@ -315,6 +316,13 @@ margin-left: 1rem;
     -ms-transition: all 0.35s ease-in ;
     -o-transition: all 0.35s ease-in ;
 }
+
+#cursor {
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    z-index: 10000;
+            }
 
 
 @media screen and (min-width:990px) {

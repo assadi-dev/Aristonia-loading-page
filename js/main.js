@@ -17,8 +17,8 @@ const svgVolumePath = {
 
 let clicked = false;
 let volumeLevel = 0.5;
-let volumeComplete = 50;
-let positionCusorVol = 293;
+let volumeComplete = 20;
+let positionCusorVol = 124;
 
 document.addEventListener("DOMContentLoaded", () => {
   load_volume_icone();
@@ -32,13 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const load_volume_icone = async (e) => {
-  const icon = new Image();
-  icon.src = svgVolumePath.off;
-  objectNode.volumeIcon.append(icon);
-  objectNode.volumeOff.classList.add("volume-selected");
+  // const icon = new Image();
+  // icon.src = svgVolumePath.on;
+  //  objectNode.volumeIcon.append(icon);
+  objectNode.volumeOn.classList.add("volume-selected");
   objectNode.volumeOn.onclick = play_video;
   objectNode.volumeOff.onclick = stop_video;
-  objectNode.audio.volume = 0;
+  objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
+  objectNode.volumeLevel.textContent = `${volumeComplete}%`;
+  objectNode.audio.volume = 0.5;
 };
 
 const play_video = async (e) => {
@@ -53,7 +55,6 @@ const play_video = async (e) => {
 
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
   objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
-  objectNode.audio.volume = volumeLevel;
 
   if (objectNode.video.paused || objectNode.video.ended) {
     objectNode.video.play();
@@ -100,7 +101,9 @@ const move_volume_cursor = (e) => {
   if (!clicked) {
     return;
   }
+
   const mousePose = e.layerX;
+
   const clientWidth = objectNode.volumeSoundBar.clientWidth;
   const limit = clientWidth - 8;
   let percent = Math.floor((mousePose * 100) / clientWidth);
@@ -127,7 +130,8 @@ const handlerProgress = () => {
     },
 
     initFunctionInvoking(data) {
-      let progress = (data.idx / count) * 100 + "%";
+      let progress = Math.round((data.idx / count) * 100) + "%";
+
       objectNode.progressPercent.textContent = progress;
       objectNode.progressBar.style.width = progress;
     },
@@ -139,7 +143,7 @@ const handlerProgress = () => {
     performMapLoadFunction(data) {
       ++thisCount;
 
-      let progress = (thisCount / count) * 100 + "%";
+      let progress = Math.round((thisCount / count) * 100) + "%";
 
       objectNode.progressPercent.textContent = progress;
       objectNode.progressBar.style.width = progress;
@@ -149,4 +153,21 @@ const handlerProgress = () => {
   window.addEventListener("message", function (e) {
     (handlers[e.data.eventName] || function () {})(e.data);
   });
+};
+
+const initMouse = () => {
+  let cursor = document.getElementById("cursor");
+
+  //TODO: More consistent way of aligning the cursor without awkward offsets?
+  let x = event.pageX - cursor.width + 7;
+  let y = event.pageY - 7;
+
+  cursor.style.left = x;
+  cursor.style.top = y;
+};
+
+const load_svg = async (path) => {
+  let res = await fetch(path);
+  const svg = await res.text();
+  return svg;
 };
