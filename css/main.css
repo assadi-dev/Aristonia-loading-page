@@ -309,7 +309,11 @@ opacity: 1;
     left: 0;
     height: 100%;
     border-radius: 50px;
- 
+    transition: all ease-in 0.05s;
+    -webkit-transition: all ease-in 0.05s;
+    -moz-transition: all ease-in 0.05s;
+    -ms-transition: all ease-in 0.05s;
+    -o-transition: all ease-in 0.05s;
 }
 
 

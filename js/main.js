@@ -21,15 +21,15 @@ let volumeComplete = 20;
 let positionCusorVol = 124;
 
 document.addEventListener("DOMContentLoaded", () => {
+  //Chargement de l'etat du volume
   load_volume_icone();
-  //Mouvemen du curseur bar de son
-  objectNode.volumeSoundBar.addEventListener("mousedown", active_move);
-  objectNode.volumeSoundBar.addEventListener("mouseup", leave_move);
-  objectNode.volumeSoundBar.addEventListener("mouseleave", leave_move);
-  objectNode.volumeSoundBar.addEventListener("mousemove", move_volume_cursor);
+  //Mouvement du curseur bar de son
+  init_cursor();
   //Handler Progress
   handlerProgress();
 });
+
+/** Fonctions **/
 
 const load_volume_icone = async (e) => {
   // const icon = new Image();
@@ -41,6 +41,13 @@ const load_volume_icone = async (e) => {
   objectNode.volumeCursor.style.width = "20%";
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
   objectNode.audio.volume = 0.2;
+};
+
+const init_cursor = () => {
+  objectNode.volumeSoundBar.addEventListener("mousedown", active_move);
+  objectNode.volumeSoundBar.addEventListener("mouseup", leave_move);
+  objectNode.volumeSoundBar.addEventListener("mouseleave", leave_move);
+  objectNode.volumeSoundBar.addEventListener("mousemove", move_volume_cursor);
 };
 
 const play_video = async (e) => {
@@ -97,6 +104,12 @@ const leave_move = (e) => {
   e.stopPropagation();
   clicked = false;
 };
+
+/**
+ * Met à jour la progression du volume en fonction de la position de la souris
+ * @param {*} e
+ * @returns
+ */
 const move_volume_cursor = (e) => {
   if (!clicked) {
     return;
@@ -169,3 +182,5 @@ const load_svg = async (path) => {
   const svg = await res.text();
   return svg;
 };
+
+/** Fonctions **/
