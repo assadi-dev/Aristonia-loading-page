@@ -1,74 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aristonia</title>
 
         <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180"
-            href="./favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32"
-            href="./favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16"
-            href="./favicon/favicon-16x16.png">
-        <link rel="manifest" href="./favicon/site.webmanifest">
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./favicon/apple-touch-icon.png"
+            />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./favicon/favicon-32x32.png"
+            />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./favicon/favicon-16x16.png"
+            />
+        <link rel="manifest" href="./favicon/site.webmanifest" />
 
-        <link rel="stylesheet" href="./css/reset.css">
-        <link rel="stylesheet" href="./css/variable.css">
-        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/variable.css" />
+        <link rel="stylesheet" href="./css/main.css" />
     </head>
     <body>
-        <img id="cursor" src="./assets/icon/cursor.png"/>
+        <img id="cursor" src="./assets/icon/cursor.png" />
         <main class="main-section">
             <figure class="logo">
-                <img src="./assets/logo.png" alt="logo Aristonia">
+                <img src="./assets/logo.png" alt="logo Aristonia" />
             </figure>
 
             <section class="middle-section">
                 <div class="presentation-white-back"></div>
 
-
-
                 <div class="presentation-container">
-
-                    <video muted class="video" src="./assets/LOading.mp4" width="1920"
-                        height="1080" autoplay loop></video>
-                        <audio class="audio" src="./assets/LOading.mp4"  loop autoplay hidden  type="audio/mp4" >
-
-                        </audio>
+                    <video muted class="video" width="1920" height="1080"
+                        autoplay loop>
+                        <source src="./assets/LOading.mp4" />
+                    </video>
+                    <audio class="audio" loop autoplay hidden>
+                        <source src="./assets/LOading.mp4" type="audio/mp4" />
+                    </audio>
 
                     <div class="progress-section">
-
                         <span class="progress-percent">0%</span>
                         <div class="progress-container">
-
                             <div class="bar"></div>
                         </div>
-
                     </div>
-
-
                 </div>
-
-
-
             </section>
 
-
-            <seection class="bottom-section">
+            <section class="bottom-section">
                 <div class="volume-controls-container">
-                    <div class="row-btn"><span id="volume-icon"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-width="1.5"><path d="M1 13.857v-3.714a2 2 0 0 1 2-2h2.9a1 1 0 0 0 .55-.165l6-3.956a1 1 0 0 1 1.55.835v14.286a1 1 0 0 1-1.55.835l-6-3.956a1 1 0 0 0-.55-.165H3a2 2 0 0 1-2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 7.5S19 9 19 11.5s-1.5 4-1.5 4m3-11S23 7 23 11.5s-2.5 7-2.5 7"/></g></svg></span> <button
-                            id="play-video">ON</button> <button id="stop-video">OFF</button>  <div id="volume-level-container"> <span>Volume</span><span id="volume-level" >0%</span> </div> </div>
-                    <div class="volume-sounBar-container">
-                        <div id="sound_cursor"></div>
-                    </div>
-                </div>
-            </seection>
-
-        </main>
-
-        <script src="./js/main.js"></script>
-    </body>
-</html>
+                    <div class="row-btn">
+                        <span id="volume-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0
+                                24 24">
+                                <g fill="none" stroke="white"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M1
+                                        13.857v-3.714a2 2 0 0 1 2-2h2.9a1 1 0 0
+                                        0 .55-.165l6-3.956a1 1 0 0 1
+                                        1.55.835v14.286a1 1 0 0
+                                        1-1.55.835l-6-3.956a1 1 0 0
+                                        0-.55-.165H3a2 2 0 0 1-2-2Z"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M17.5
+                                            7.5S19 9 19 11.5s-1.5 4-1.5
+                                            4m3-11S23 7 23 11.5s-2.5 7-2.5 7"
+                                            />
+                                        </g></svg></span>
+                                <button id="play-video">ON</button>
+                                <button id="stop-video">OFF</button>
+                                <div id="volume-level-container">
+                                    <span>Volume</span><span id="volume-level">0%</span>
+                                </div>
+                            </div>
+                            <div class="volume-sounBar-container">
+                                <div id="sound_bar"></div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                <script src="./js/svg.js"></script>
+                <script src="./js/main.js"></script>
+            </body>
+        </html>

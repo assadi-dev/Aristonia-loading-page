@@ -4,7 +4,7 @@ const objectNode = {
   volumeOn: document.querySelector("#play-video"),
   volumeOff: document.querySelector("#stop-video"),
   volumeSoundBar: document.querySelector(".volume-sounBar-container"),
-  volumeCursor: document.querySelector("#sound_cursor"),
+  volumeCursor: document.querySelector("#sound_bar"),
   volumeLevel: document.querySelector("#volume-level"),
   audio: document.querySelector(".audio"),
   progressPercent: document.querySelector(".progress-percent"),
@@ -38,9 +38,9 @@ const load_volume_icone = async (e) => {
   objectNode.volumeOn.classList.add("volume-selected");
   objectNode.volumeOn.onclick = play_video;
   objectNode.volumeOff.onclick = stop_video;
-  objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
+  objectNode.volumeCursor.style.width = "20%";
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
-  objectNode.audio.volume = 0.5;
+  objectNode.audio.volume = 0.2;
 };
 
 const play_video = async (e) => {
@@ -51,7 +51,7 @@ const play_video = async (e) => {
 
   objectNode.volumeOff.classList.remove("volume-selected");
   objectNode.volumeOn.classList.add("volume-selected");
-  objectNode.volumeIcon.replaceChildren(icon);
+  // objectNode.volumeIcon.replaceChildren(icon);
 
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
   objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
@@ -69,7 +69,7 @@ const stop_video = async () => {
   icon.src = svgVolumePath.off;
   objectNode.volumeOn.classList.remove("volume-selected");
   objectNode.volumeOff.classList.add("volume-selected");
-  objectNode.volumeIcon.replaceChildren(icon);
+  // objectNode.volumeIcon.replaceChildren(icon);
   objectNode.audio.volume = 0;
 };
 
@@ -87,7 +87,7 @@ const active_move = (e) => {
   objectNode.volumeOn.classList.add("volume-selected");
   const icon = new Image();
   icon.src = svgVolumePath.on;
-  objectNode.volumeIcon.replaceChildren(icon);
+  // objectNode.volumeIcon.replaceChildren(icon);
 
   if (objectNode.audio.paused || objectNode.audio.ended) {
     objectNode.audio.play();
@@ -103,18 +103,16 @@ const move_volume_cursor = (e) => {
   }
 
   const mousePose = e.layerX;
-
   const clientWidth = objectNode.volumeSoundBar.clientWidth;
-  const limit = clientWidth - 8;
+  const limit = clientWidth;
   let percent = Math.floor((mousePose * 100) / clientWidth);
+  percent = percent > 50 ? percent + 1 : percent;
   volumeLevel = percent * 0.01;
   volumeComplete = percent;
 
-  if (mousePose > 1 && mousePose < limit) {
+  if (mousePose >= 0 && mousePose <= limit) {
     positionCusorVol = mousePose;
-    objectNode.volumeCursor.style.transform = `translateX(${
-      positionCusorVol - 9
-    }px)`;
+    objectNode.volumeCursor.style.width = `${percent}%`;
     objectNode.audio.volume = volumeLevel;
     objectNode.volumeLevel.textContent = `${volumeComplete}%`;
   }
