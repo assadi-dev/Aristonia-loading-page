@@ -141,10 +141,10 @@ const handlerProgress = () => {
     },
 
     initFunctionInvoking(data) {
-      let progress = Math.round((data.idx / count) * 100) + "%";
-
-      objectNode.progressPercent.textContent = progress;
-      objectNode.progressBar.style.width = progress;
+      let progress = Math.round((data.idx / count) * 100);
+      progress = progress > 100 ? 100 : progress;
+      objectNode.progressPercent.textContent = `${progress}%`;
+      objectNode.progressBar.style.width = `${progress}%`;
     },
 
     startDataFileEntries(data) {
@@ -154,10 +154,10 @@ const handlerProgress = () => {
     performMapLoadFunction(data) {
       ++thisCount;
 
-      let progress = Math.round((thisCount / count) * 100) + "%";
-
-      objectNode.progressPercent.textContent = progress;
-      objectNode.progressBar.style.width = progress;
+      let progress = Math.round((thisCount / count) * 100);
+      progress = progress > 100 ? 100 : progress;
+      objectNode.progressPercent.textContent = `${progress}%`;
+      objectNode.progressBar.style.width = `${progress}%`;
     },
   };
 
