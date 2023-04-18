@@ -183,14 +183,20 @@
 
 }
 
-#volume-icon {
+.hide
+{
+    display:none;
+    visibility: hidden;
+}
+
+.volume-icon {
     width: 45px;
     height: 45px;
     margin-right: 2rem;
     color: var(--white-color);
 }
 
-#volume-icon svg {
+.volume-icon svg {
     width: 100%;
     height: 100%;
 

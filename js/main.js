@@ -3,6 +3,8 @@ const objectNode = {
   video: document.querySelector(".video"),
   volumeOn: document.querySelector("#play-video"),
   volumeOff: document.querySelector("#stop-video"),
+  volumeIconOn: document.querySelector("#volume_on"),
+  volumeIconOff: document.querySelector("#volume_off"),
   volumeSoundBar: document.querySelector(".volume-sounBar-container"),
   volumeCursor: document.querySelector("#sound_bar"),
   volumeLevel: document.querySelector("#volume-level"),
@@ -51,17 +53,10 @@ const init_cursor = () => {
 };
 
 const play_video = async (e) => {
-  const icon = new Image();
-  icon.src = svgVolumePath.on;
-  const clientWidth = objectNode.volumeSoundBar.clientWidth;
-  //positionCusorVol = clientWidth / 2;
-
-  objectNode.volumeOff.classList.remove("volume-selected");
-  objectNode.volumeOn.classList.add("volume-selected");
-  // objectNode.volumeIcon.replaceChildren(icon);
+  let status = "on";
+  switchSelected(status);
 
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
-  //objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
 
   if (objectNode.video.paused || objectNode.video.ended) {
     objectNode.video.play();
@@ -72,10 +67,9 @@ const play_video = async (e) => {
 };
 
 const stop_video = async () => {
-  const icon = new Image();
-  icon.src = svgVolumePath.off;
-  objectNode.volumeOn.classList.remove("volume-selected");
-  objectNode.volumeOff.classList.add("volume-selected");
+  let status = "off";
+  switchSelected(status);
+
   // objectNode.volumeIcon.replaceChildren(icon);
   objectNode.audio.volume = 0;
 };
@@ -90,11 +84,6 @@ const ended_video = (e) => {
 const active_move = (e) => {
   e.stopPropagation();
   clicked = true;
-  objectNode.volumeOff.classList.remove("volume-selected");
-  objectNode.volumeOn.classList.add("volume-selected");
-  const icon = new Image();
-  icon.src = svgVolumePath.on;
-  // objectNode.volumeIcon.replaceChildren(icon);
 
   if (objectNode.audio.paused || objectNode.audio.ended) {
     objectNode.audio.play();
@@ -114,6 +103,9 @@ const move_volume_cursor = (e) => {
   if (!clicked) {
     return;
   }
+
+  let status = "on";
+  switchSelected(status);
 
   const mousePose = e.layerX;
   const clientWidth = objectNode.volumeSoundBar.clientWidth;
@@ -181,6 +173,24 @@ const load_svg = async (path) => {
   let res = await fetch(path);
   const svg = await res.text();
   return svg;
+};
+
+const switchSelected = (status) => {
+  /*   const icon = new Image();
+  icon.src = svgVolumePath.on;
+ objectNode.volumeIcon.replaceChildren(icon); */
+
+  if (status == "on") {
+    objectNode.volumeOff.classList.remove("volume-selected");
+    objectNode.volumeOn.classList.add("volume-selected");
+    objectNode.volumeIconOn.classList.remove("hide");
+    objectNode.volumeIconOff.classList.add("hide");
+  } else {
+    objectNode.volumeOn.classList.remove("volume-selected");
+    objectNode.volumeOff.classList.add("volume-selected");
+    objectNode.volumeIconOff.classList.remove("hide");
+    objectNode.volumeIconOn.classList.add("hide");
+  }
 };
 
 /** Fonctions **/
