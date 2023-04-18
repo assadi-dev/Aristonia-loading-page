@@ -61,7 +61,7 @@ const play_video = async (e) => {
   // objectNode.volumeIcon.replaceChildren(icon);
 
   objectNode.volumeLevel.textContent = `${volumeComplete}%`;
-  objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
+  //objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
 
   if (objectNode.video.paused || objectNode.video.ended) {
     objectNode.video.play();

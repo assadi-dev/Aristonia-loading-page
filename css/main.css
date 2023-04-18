@@ -89,6 +89,12 @@
     -moz-transform: translateY(-12px);
     -ms-transform: translateY(-12px);
     -o-transform: translateY(-12px);
+    background-color: var(--black-color);
+    border-radius: 22px;
+    -webkit-border-radius: 22px 22px 0 0;
+    -moz-border-radius: 22px;
+    -ms-border-radius: 22px;
+    -o-border-radius: 22px;
 }
 
 .presentation-container .video {
