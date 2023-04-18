@@ -91,7 +91,9 @@ const move_volume_cursor = (e) => {
 
   if (mousePose > 1 && mousePose < limit) {
     positionCusorVol = mousePose;
-    objectNode.volumeCursor.style.transform = `translateX(${positionCusorVol}px)`;
+    objectNode.volumeCursor.style.transform = `translateX(${
+      positionCusorVol - 9
+    }px)`;
     objectNode.video.volume = volumeLevel;
     objectNode.volumeLevel.textContent = `${volumeComplete}%`;
   }
