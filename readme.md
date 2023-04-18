@@ -1,5 +1,5 @@
 
-# Loading screen Aristonia server
+# Loading screen 
 
 ![alt text](./assets//preview/preview.png "Title")
 
